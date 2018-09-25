@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/shirley.dir/main.cpp.o  -o shirley 
