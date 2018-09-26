@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+../headers/ray.h
+vec3.h
+../headers/vec3.h
+
 ../headers/vec3.h
 math.h
 -
@@ -19,8 +23,8 @@ iostream
 -
 fstream
 -
-string
--
 vec3.h
 /home/rolandoms/Dropbox/cg/shirley/vec3.h
+ray.h
+/home/rolandoms/Dropbox/cg/shirley/ray.h
 

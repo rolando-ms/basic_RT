@@ -1,3 +1,7 @@
+#ifndef SHIRLEY_VEC3_H
+#define SHIRLEY_VEC3_H
+// ^^^^^^^ Used when working with multiple header files (guard code)
+
 #include <math.h>
 #include <stdlib.h>
 #include <iostream>
@@ -135,3 +139,5 @@ inline vec3& vec3::operator/=(const float t){
 inline vec3 unit_vector(vec3 v){
     return v / v.length();
 }
+
+#endif //SHIRLEY_VEC3_H

@@ -6,4 +6,5 @@ include_directories(/home/rolandoms/Dropbox/cg/shirley/headers)
 set(CMAKE_CXX_STANDARD 11)
 
 
+#add_executable(shirley main.cpp headers/ray.h)
 add_executable(shirley main.cpp)
