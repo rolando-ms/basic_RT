@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+../headers/vec3.h
+math.h
+-
+stdlib.h
+-
+iostream
+-
+
 /home/rolandoms/Dropbox/cg/shirley/main.cpp
 iostream
 -
@@ -13,4 +21,6 @@ fstream
 -
 string
 -
+vec3.h
+/home/rolandoms/Dropbox/cg/shirley/vec3.h
 
