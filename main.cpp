@@ -8,19 +8,18 @@
 // Function that checks if a ray is hitting a sphere according to
 // the solution of dot((p-c),(p-c)) = r^2 : p=o+t*d
 // -> t^2*dot(d,d) + 2*t*dot(t,o-c) + dot((o-c),(o-c)) = r^2
-// If discriminant > 0 -> 2 real solutions (ray hits the sphere twice)
-// if discriminant = 0 -> 1 real solution (ray hits sphere on surface)
-// if discriminant < 0 -> No real solutions (No hit)
 float hit_sphere(const vec3& center, float radius, const ray& r){
     vec3 oc = r.origin() - center;
     float a = dot(r.direction(), r.direction());
     float b = 2.0 * dot(oc, r.direction());
     float c = dot(oc, oc) - radius*radius;
     float discriminant = b*b - 4*a*c;
+    // If discriminant >= 0 -> 2 or 1 real solutions (ray hits the sphere twice)
     if (discriminant < 0){
         return -1.0;
     }
     else{
+        // if discriminant < 0 -> No real solutions (No hit, thus not interested in answer)
         return (-b - sqrt(discriminant)) / (2.0*a);
     }
 }
@@ -28,12 +27,14 @@ float hit_sphere(const vec3& center, float radius, const ray& r){
 
 vec3 color(const ray& r){
     float t = hit_sphere(vec3(0,0,-1),0.5,r);
+    // If ray hits the sphere
     if (t > 0.0){
+        // Vector from surface hit to center of image plane
         vec3 N = unit_vector(r.point_at_parameter(t) - vec3(0,0,-1));
+        // Positive normalized unit vector (same trick used with 0<=t<=1)
         return 0.5*vec3(N.x()+1, N.y()+1, N.z()+1);
     }
-//    if (hit_sphere(vec3(0,0,-1), 0.5, r))
-//        return vec3(1,0,0);
+    // If doesn't hits the sphere (just show background)
     vec3 unit_direction = unit_vector(r.direction());
     t = 0.5*(unit_direction.y() + 1.0);
     // Linear interpolation
