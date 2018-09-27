@@ -6,9 +6,21 @@
 
 #IncludeRegexTransform: 
 
+../headers/hitable.h
+ray.h
+../headers/ray.h
+
+../headers/hitablelist.h
+hitable.h
+../headers/hitable.h
+
 ../headers/ray.h
 vec3.h
 ../headers/vec3.h
+
+../headers/sphere.h
+hitable.h
+../headers/hitable.h
 
 ../headers/vec3.h
 math.h
@@ -27,4 +39,10 @@ vec3.h
 /home/rolandoms/Dropbox/cg/shirley/vec3.h
 ray.h
 /home/rolandoms/Dropbox/cg/shirley/ray.h
+sphere.h
+/home/rolandoms/Dropbox/cg/shirley/sphere.h
+hitablelist.h
+/home/rolandoms/Dropbox/cg/shirley/hitablelist.h
+values.h
+/home/rolandoms/Dropbox/cg/shirley/values.h
 
