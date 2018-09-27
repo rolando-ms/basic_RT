@@ -11,7 +11,7 @@
 // If discriminant > 0 -> 2 real solutions (ray hits the sphere twice)
 // if discriminant = 0 -> 1 real solution (ray hits sphere on surface)
 // if discriminant < 0 -> No real solutions (No hit)
-bool hit_sphere(const vec3& center, float radius, const ray& r){
+float hit_sphere(const vec3& center, float radius, const ray& r){
     vec3 oc = r.origin() - center;
     float a = dot(r.direction(), r.direction());
     float b = 2.0 * dot(oc, r.direction());
