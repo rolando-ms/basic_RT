@@ -22,7 +22,7 @@ bool sphere::hit(const ray& r, float t_min, float t_max, hit_record& rec) const{
     float b = dot(oc, r.direction());
     float c = dot(oc, oc) - radius*radius;
     float discriminant = b*b - a*c;
-    // If discriminant >= 0 -> 2 or 1 real solutions (ray hits the sphere twice)
+    // If discriminant > 0 -> 2 real solutions (ray hits the sphere twice)
     if (discriminant > 0){
         float temp = (-b-sqrt(b*b-a*c))/a;
         if (temp < t_max && temp > t_min){
