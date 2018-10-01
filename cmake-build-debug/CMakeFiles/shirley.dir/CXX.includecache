@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+../headers/camera.h
+ray.h
+../headers/ray.h
+
 ../headers/hitable.h
 ray.h
 ../headers/ray.h
@@ -45,4 +49,6 @@ hitablelist.h
 /home/rolandoms/Dropbox/cg/shirley/hitablelist.h
 values.h
 /home/rolandoms/Dropbox/cg/shirley/values.h
+camera.h
+/home/rolandoms/Dropbox/cg/shirley/camera.h
 
