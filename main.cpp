@@ -10,24 +10,16 @@
 #include "camera.h"
 //#include <stdlib.h>
 
-//// Function that checks if a ray is hitting a sphere according to
-//// the solution of dot((p-c),(p-c)) = r^2 : p=o+t*d
-//// -> t^2*dot(d,d) + 2*t*dot(t,o-c) + dot((o-c),(o-c)) = r^2
-//float hit_sphere(const vec3& center, float radius, const ray& r){
-//    vec3 oc = r.origin() - center;
-//    float a = dot(r.direction(), r.direction());
-//    float b = 2.0 * dot(oc, r.direction());
-//    float c = dot(oc, oc) - radius*radius;
-//    float discriminant = b*b - 4*a*c;
-//    // If discriminant >= 0 -> 2 or 1 real solutions (ray hits the sphere twice)
-//    if (discriminant < 0){
-//        return -1.0;
-//    }
-//    else{
-//        // if discriminant < 0 -> No real solutions (No hit, thus not interested in answer)
-//        return (-b - sqrt(discriminant)) / (2.0*a);
-//    }
-//}
+
+// Rejection method. Pick a point in unit cube (x,y,x) in [-1,1).
+// Reject point and try again if it is outside sphere.
+vec3 random_in_unit_sphere(){
+    vec3 p;
+    do{
+        p = 2.0*vec3(drand48(),drand48(),drand48()) - vec3(1,1,1);
+    } while(p.squared_length() >= 1.0);
+    return p;
+}
 
 
 vec3 color(const ray& r, hitable *world){
@@ -38,7 +30,9 @@ vec3 color(const ray& r, hitable *world){
         // Vector from surface hit to center of image plane
         //vec3 N = unit_vector(r.point_at_parameter(t) - vec3(0,0,-1));
         // Positive normalized unit vector (same trick used with 0<=t<=1)
-        return 0.5*vec3(rec.normal.x()+1, rec.normal.y()+1, rec.normal.z()+1);
+        //return 0.5*vec3(rec.normal.x()+1, rec.normal.y()+1, rec.normal.z()+1);
+        vec3 target = rec.p + rec.normal + random_in_unit_sphere();
+        return 0.5*color(ray(rec.p, target-rec.p), world);
     }
     else{
         // If doesn't hits the sphere (just show background)
@@ -66,7 +60,7 @@ int main() {
     camera cam;
     for(int j = ny-1; j>=0; j--){
         for(int i = 0; i<nx; i++){
-            vec3 col(0.0,0.0,0.0);//Color initialization
+            vec3 col(0,0,0);//Color initialization
             for(int s=0; s < ns; s++){
                 float u = float(i) / float(nx);
                 float v = float(j) / float(ny);
