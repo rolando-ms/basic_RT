@@ -69,6 +69,7 @@ int main() {
                 col += color(r,world);
             }
             col /= float(ns);// Mean of all samples around pixel (i,j)
+            col = vec3(sqrt(col[0]),sqrt(col[1]),sqrt(col[2])); // For gamma correction
             int ir = int(255.99*col[0]);
             int ig = int(255.99*col[1]);
             int ib = int(255.99*col[2]);
